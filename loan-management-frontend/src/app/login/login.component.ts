@@ -18,14 +18,14 @@ export class LoginComponent implements OnInit {
   regexp2
   constructor(private route:Router,
     private notifyService : NotificationService,
-    private validateUser : ValidateUserService) { }
+    private validateUserService : ValidateUserService) { }
 
   ngOnInit(): void {
   }
   handleLogin(){
       console.log(this.username)
-      if(this.validateUser.validate(this.username,this.password)){
-      this.route.navigate(['viewloan'])
+      if(this.validateUserService.validate(this.username,this.password)){
+        this.route.navigate(['viewloan'])
         this.isInvalidLogin=false
     }
     else{

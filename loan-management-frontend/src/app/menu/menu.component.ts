@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidateUserService } from '../services/validate-user.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  isUserLoggenIn:boolean=false
+  constructor(public validateUserService:ValidateUserService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.isUserLoggenIn=this.validateUserService.isUserLoggedIn();
   }
 
 }
