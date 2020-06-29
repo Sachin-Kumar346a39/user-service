@@ -12,6 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LogoutComponent } from './logout/logout.component';
+import { AddLoanComponent } from './add-loan/add-loan.component';
+import { LoanInfo } from './loan-info.model';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { LogoutComponent } from './logout/logout.component';
     MenuComponent,
     ErrorComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
+    AddLoanComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { LogoutComponent } from './logout/logout.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [LoanInfo],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
