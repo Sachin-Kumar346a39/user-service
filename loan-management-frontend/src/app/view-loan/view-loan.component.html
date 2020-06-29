@@ -24,18 +24,16 @@
         </div>
         <div>
             <div *ngIf='flag'>
-                <h2>Loan Details found !!</h2>
+                <h3>Loan Details found !!</h3>
             </div>
             <div *ngIf="notfound" class="text-danger">
-                <h2>No results found !!</h2>
+                <h3>No results found !!</h3>
             </div>
             <div *ngIf="deleted" class="text-danger">
-                <h2>Loan details deleted !!</h2>
+                <h3>Loan details deleted !!</h3>
             </div>
             <table id="loanDetails" *ngIf='flag && !deleted'>
-                <tr>
-                    <h2 class="text-success"></h2>
-                </tr>
+
                 <tr>
                     <th>Borrower Full Name</th>
                     <th>Loan Number</th>
