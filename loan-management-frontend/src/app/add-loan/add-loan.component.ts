@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { LoanInfo } from '../loan-info.model';
+import { NotificationService } from '../services/notification.service';
 
 
 @Component({
@@ -12,12 +13,15 @@ import { LoanInfo } from '../loan-info.model';
 export class AddLoanComponent implements OnInit{
 
   loanInfoModel: LoanInfo=new LoanInfo();
-  constructor(private loanInfo: LoanInfo) { }
+
+  constructor(private loanInfo: LoanInfo,  private notifyService : NotificationService) { }
 
   ngOnInit():void{}
-  submitted = false;
 
-  onSubmit() { this.submitted = true; }
-  
-
+  addLoan() {
+    if(confirm("Are you sure to Add Loan ")) {
+      this.notifyService.showSuccess("Load Added Successfully","");
+      this.loanInfoModel = new LoanInfo();
+    }
+  }
 }
