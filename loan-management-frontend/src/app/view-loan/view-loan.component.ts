@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -35,7 +36,7 @@ export class ViewLoanComponent implements OnInit {
       "loanAmount": "789"
       }
     ];
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     
@@ -74,6 +75,10 @@ export class ViewLoanComponent implements OnInit {
     this.flag=false
     this.deleted=false
     this.notfound=false
+  }
+
+  editLoan():void{
+this.router.navigate(['editloan'])
   }
 
 }
