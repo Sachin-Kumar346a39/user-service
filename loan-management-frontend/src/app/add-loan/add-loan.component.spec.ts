@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddLoanComponent } from './add-loan.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrModule } from 'ngx-toastr';
+import { LoanInfo } from '../loan-info.model';
+
+import { FormsModule } from '@angular/forms';
 
 describe('AddLoanComponent', () => {
   let component: AddLoanComponent;
@@ -8,7 +13,13 @@ describe('AddLoanComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddLoanComponent ]
+      declarations: [ AddLoanComponent],
+      providers: [LoanInfo],
+      imports: [
+        RouterTestingModule.withRoutes([]),
+        ToastrModule.forRoot(),
+        FormsModule
+      ],
     })
     .compileComponents();
   }));
