@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoanInfo } from '../loan-info.model';
 import { NotificationService } from '../services/notification.service';
 
@@ -9,7 +9,7 @@ import { NotificationService } from '../services/notification.service';
   styleUrls: ['./add-loan.component.css']
 })
 
-@Injectable()
+//@Injectable()
 export class AddLoanComponent implements OnInit{
 
   loanInfoModel: LoanInfo=new LoanInfo();
