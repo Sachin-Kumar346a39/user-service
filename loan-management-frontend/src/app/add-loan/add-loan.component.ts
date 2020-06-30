@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanInfo } from '../loan-info.model';
 import { NotificationService } from '../services/notification.service';
-
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-add-loan',
@@ -14,7 +14,7 @@ export class AddLoanComponent implements OnInit{
 
   loanInfoModel: LoanInfo=new LoanInfo();
 
-  constructor(private loanInfo: LoanInfo,  private notifyService : NotificationService) { }
+  constructor(private loanInfo: LoanInfo,  private notifyService : NotificationService, private _location: Location) { }
 
   ngOnInit():void{}
 
@@ -23,5 +23,9 @@ export class AddLoanComponent implements OnInit{
       this.notifyService.showSuccess("Load Added Successfully","");
       this.loanInfoModel = new LoanInfo();
     }
+  }
+
+  doCancel() {
+    this._location.back();
   }
 }
