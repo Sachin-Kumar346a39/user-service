@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import{FormsModule} from '@angular/forms';
+import{FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ViewLoanComponent } from './view-loan/view-loan.component';
 import { MenuComponent } from './menu/menu.component';
 import { ErrorComponent } from './error/error.component';
@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LogoutComponent } from './logout/logout.component';
 import { AddLoanComponent } from './add-loan/add-loan.component';
 import { LoanInfo } from './loan-info.model';
+import { EditLoanComponent } from './edit-loan/edit-loan.component';
 
 @NgModule({
   declarations: [
@@ -24,14 +25,17 @@ import { LoanInfo } from './loan-info.model';
     ErrorComponent,
     FooterComponent,
     LogoutComponent,
-    AddLoanComponent
+    AddLoanComponent,
+    EditLoanComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ReactiveFormsModule,
+
   ],
   providers: [LoanInfo],
   bootstrap: [AppComponent]
