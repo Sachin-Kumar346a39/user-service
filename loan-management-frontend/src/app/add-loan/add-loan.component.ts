@@ -19,7 +19,7 @@ export class AddLoanComponent implements OnInit{
   ngOnInit():void{}
 
   addLoan() {
-    if(confirm("Are you sure to Add Loan ")) {
+    if(confirm("Are you sure to Add Loan? ")) {
       this.notifyService.showSuccess("Load Added Successfully","");
       this.loanInfoModel = new LoanInfo();
     }
