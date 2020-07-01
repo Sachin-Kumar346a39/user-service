@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoanInfo } from '../loan-info.model';
 import { NotificationService } from '../services/notification.service';
 import {Location} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-loan',
@@ -14,18 +15,18 @@ export class AddLoanComponent implements OnInit{
 
   loanInfoModel: LoanInfo=new LoanInfo();
 
-  constructor(private loanInfo: LoanInfo,  private notifyService : NotificationService, private _location: Location) { }
+  constructor(private loanInfo: LoanInfo,  private notifyService : NotificationService, private _location: Location,private router:Router) { }
 
   ngOnInit():void{}
 
   addLoan() {
     if(confirm("Are you sure to Add Loan? ")) {
-      this.notifyService.showSuccess("Load Added Successfully","");
+      this.notifyService.showSuccess("Loan Added Successfully for Loan#: "+this.loanInfoModel.loanNumber,"");
       this.loanInfoModel = new LoanInfo();
     }
   }
 
   doCancel() {
-    this._location.back();
+    this.router.navigate(['viewloan'])
   }
 }

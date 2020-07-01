@@ -19,7 +19,7 @@ export class EditLoanComponent implements OnInit {
   updateLoan() {
     if(confirm("Are you sure to Update Loan? ")) {
     //message needs to be updated
-      this.notifyService.showSuccess("Loan Updated Successfully for: "+this.loanInfoModel.addressLine1,"");
+      this.notifyService.showSuccess("Loan Updated Successfully for Loan#: "+this.loanInfoModel.loanNumber,"");
       this.updatedLoanInfo=this.loanInfoModel;
       this.loanInfoModel = new LoanInfo();
     }
