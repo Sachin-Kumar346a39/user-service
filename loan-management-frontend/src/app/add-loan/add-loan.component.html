@@ -42,6 +42,11 @@
                     </div>
                     <div class="container card-body card-container card-small highlight-card bg-light">
                         <tr>
+                            <td>Loan Number:</td>
+                            <td><input [(ngModel)]="loanInfoModel.loanNumber" name="loanNumber" required type="text"
+                                    placeholder="Loan Number"></td>
+                        </tr>
+                        <tr>
                             <td>Loan Amount :</td>
 
                             <td><input [(ngModel)]="loanInfoModel.loanAmount" name="loanAmount" required type="text"
@@ -75,7 +80,14 @@
                         </tr>
                     </div>
                 </table>
-                <button class="btn btn-primary" (click)="addLoan()" [disabled]="!myForm.form.valid">ADD</button>
+                <div class="form-group row">
+                    <div class="col-md-1">
+                        <button class="btn btn-primary" (click)="addLoan()" [disabled]="!myForm.form.valid">ADD</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-warning" (click)="doCancel()">Cancel</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
