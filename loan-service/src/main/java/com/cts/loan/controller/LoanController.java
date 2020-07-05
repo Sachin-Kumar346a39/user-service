@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,22 @@ public class LoanController {
 
 		try {
 			lLoan = loanService.addLoan(loan);
+		} catch (Exception e) {
+			log.error("LoanController Exception: ", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+
+		return new ResponseEntity<Loan>(lLoan, status);
+	}
+	
+	@PostMapping("/updateLoan/{loanId}")
+	public ResponseEntity<Loan> updateLoan(@PathVariable int loanId, @Valid @RequestBody Loan loan) {
+
+		HttpStatus status = HttpStatus.OK;
+		Loan lLoan = null;
+
+		try {
+			lLoan = loanService.updateLoan(loanId, loan);
 		} catch (NoResourceException e) {
 			log.error("LoanController Exception: ", e.getMessage());
 			status = HttpStatus.INTERNAL_SERVER_ERROR;

@@ -18,6 +18,7 @@ class LoanRepositoryTest {
 	@Autowired
 	private LoanRepository loanRepository;
 	private Loan expectedLoan;
+	private Loan updatedLoan;
 
 	@BeforeEach
 	public void setUp() {
@@ -36,6 +37,20 @@ class LoanRepositoryTest {
 		expectedLoan.setLienID("001");
 		expectedLoan.setLienDescription("LIEN");
 
+		updatedLoan = new Loan();
+		updatedLoan.setBorrowerName("Borrower 1");
+		updatedLoan.setAddressLine1("202 HARTNELL");
+		updatedLoan.setAddressLine2("PL");
+		updatedLoan.setCity("Sacramento");
+		updatedLoan.setState("CA");
+		updatedLoan.setZip(97978);
+		updatedLoan.setLoanNumber("001");
+		updatedLoan.setLoanAmount(10000.0);
+		updatedLoan.setLoanTerm((float) 5);
+		updatedLoan.setLienType("SALE");
+		updatedLoan.setLienID("001");
+		updatedLoan.setLienDescription("LIEN");
+
 	}
 
 	@Test
@@ -48,6 +63,13 @@ class LoanRepositoryTest {
 		loanRepository.save(expectedLoan);
 
 		assertThat(expectedLoan.getLoanId()).isNotNull().isNotNegative();
+	}
+
+	@Test
+	void testUpdateLoanRepository() {
+		loanRepository.save(updatedLoan);
+
+		assertThat(updatedLoan.getLoanId()).isNotNull().isNotNegative();
 	}
 
 }
