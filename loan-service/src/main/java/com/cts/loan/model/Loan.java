@@ -60,8 +60,8 @@ public class Loan {
 	private String lienType;
 
 	@NotNull
-	@Column(name = "lien_description")
-	private String lienDescription;
+	@Column(name = "legal_description")
+	private String legalDescription;
 
 	public Integer getLoanId() {
 		return loanId;
@@ -159,11 +159,11 @@ public class Loan {
 		this.lienType = lienType;
 	}
 
-	public String getLienDescription() {
-		return lienDescription;
+	public String getLegalDescription() {
+		return legalDescription;
 	}
 
-	public void setLienDescription(String lienDescription) {
-		this.lienDescription = lienDescription;
+	public void setLegalDescription(String legalDescription) {
+		this.legalDescription = legalDescription;
 	}
 }

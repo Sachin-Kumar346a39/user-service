@@ -35,7 +35,7 @@ class LoanRepositoryTest {
 		expectedLoan.setLoanTerm((float) 5);
 		expectedLoan.setLienType("SALE");
 		expectedLoan.setLienID("001");
-		expectedLoan.setLienDescription("LIEN");
+		expectedLoan.setLegalDescription("LIEN");
 
 		updatedLoan = new Loan();
 		updatedLoan.setBorrowerName("Borrower 1");
@@ -49,7 +49,7 @@ class LoanRepositoryTest {
 		updatedLoan.setLoanTerm((float) 5);
 		updatedLoan.setLienType("SALE");
 		updatedLoan.setLienID("001");
-		updatedLoan.setLienDescription("LIEN");
+		updatedLoan.setLegalDescription("LIEN");
 
 	}
 

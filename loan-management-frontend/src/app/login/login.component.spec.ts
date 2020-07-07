@@ -1,3 +1,4 @@
+import { UserInfo } from './../user-info.model';
 
 import { ValidateUserService } from './../services/validate-user.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -9,10 +10,21 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { ToastrModule } from 'ngx-toastr';
 
-import { Observable } from 'rxjs';
-import { UserInfo } from '../user-info.model';
+import { Observable, of } from 'rxjs';
 
+let userInfo = new UserInfo();
+const validateUserServiceStub = {
 
+  validate(userInfo: UserInfo) {
+    return of([
+      {
+        "username": "user@sw.com",
+        "password": "",
+        "admin": false
+      }
+    ])
+  }
+};
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -25,7 +37,8 @@ describe('LoginComponent', () => {
         HttpClientTestingModule
       ],
       declarations: [LoginComponent],
-      providers: [UserInfo, ValidateUserService
+      providers: [UserInfo, ValidateUserService,
+        { provide: ValidateUserService, useValue: validateUserServiceStub }
 
       ]
     })
@@ -54,16 +67,8 @@ describe('LoginComponent', () => {
 
   it('should login', () => {
 
-
-    fixture.detectChanges();
-    let userService = fixture.debugElement.injector.get(ValidateUserService);
-    spyOn(userService, 'validate').and.returnValue(new Observable);
-
-    fixture.componentInstance.handleLogin();
-    userService.validate(new UserInfo).subscribe((data) => {
-      expect(data.length).toBe(1);
-    });
-    expect(userService.validate).toHaveBeenCalled();
+    component.handleLogin();
+    expect(sessionStorage.getItem('validUser'));
 
   });
 

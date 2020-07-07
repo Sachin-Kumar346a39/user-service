@@ -21,21 +21,21 @@ public class LoanService {
 	}
 
 	public Loan updateLoan(int loanId, Loan loan) {
-		Loan loantoUpdate = getLoanByLoanId(loanId)
+		Loan loanToUpdate = getLoanByLoanId(loanId)
 				.orElseThrow(() -> new NoResourceException("Loan", "loanId", String.valueOf(loanId)));
-		loantoUpdate.setAddressLine1(loan.getAddressLine1());
-		loantoUpdate.setAddressLine2(loan.getAddressLine2());
-		loantoUpdate.setBorrowerName(loan.getBorrowerName());
-		loantoUpdate.setCity(loan.getCity());
-		loantoUpdate.setState(loan.getState());
-		loantoUpdate.setZip(loan.getZip());
-		loantoUpdate.setLienDescription(loan.getLienDescription());
-		loantoUpdate.setLienID(loan.getLienID());
-		loantoUpdate.setLienType(loan.getLienType());
-		loantoUpdate.setLoanAmount(loan.getLoanAmount());
-		loantoUpdate.setLoanTerm(loan.getLoanTerm());
+		loanToUpdate.setAddressLine1(loan.getAddressLine1());
+		loanToUpdate.setAddressLine2(loan.getAddressLine2());
+		loanToUpdate.setBorrowerName(loan.getBorrowerName());
+		loanToUpdate.setCity(loan.getCity());
+		loanToUpdate.setState(loan.getState());
+		loanToUpdate.setZip(loan.getZip());
+		loanToUpdate.setLegalDescription(loan.getLegalDescription());
+		loanToUpdate.setLienID(loan.getLienID());
+		loanToUpdate.setLienType(loan.getLienType());
+		loanToUpdate.setLoanAmount(loan.getLoanAmount());
+		loanToUpdate.setLoanTerm(loan.getLoanTerm());
 
-		return repository.save(loantoUpdate);
+		return repository.save(loanToUpdate);
 	}
 
 	private Optional<Loan> getLoanByLoanId(int loanId) {

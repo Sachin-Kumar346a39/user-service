@@ -5,10 +5,10 @@ export class LoanInfo {
     addressLine2:  string;
     city :string;
     state: string;
-    zipCode: string;
+    zip: number;
     loanNumber:string;
-    loanAmount: string;
-    loanTerm: string;
+    loanAmount: number;
+    loanTerm: number;
     lienID: string;
     lienType: string;
     legalDescription: string;
@@ -19,9 +19,9 @@ export class LoanInfo {
         this.addressLine2 = ''
         this.city  = ''
         this.state = ''
-        this.zipCode = ''
-        this.loanAmount = ''
-        this.loanTerm = ''
+        this.zip = 0
+        this.loanAmount = 0
+        this.loanTerm = 0
         this.lienID = ''
         this.lienType = ''
         this.legalDescription = ''
