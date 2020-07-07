@@ -5,15 +5,17 @@ import { ValidateUserService } from './validate-user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RouteGuardService implements CanActivate{
+export class RouteGuardService implements CanActivate {
 
   constructor(private validateUserService: ValidateUserService,
-    private router:Router) { }
+    private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    if(this.validateUserService.isUserLoggedIn()){return true;}
- 
-    else{this.router.navigate(['login']);
-    return false;}
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (this.validateUserService.isUserLoggedIn()) { return true; }
+
+    else {
+      this.router.navigate(['login']);
+      return false;
+    }
   }
 }

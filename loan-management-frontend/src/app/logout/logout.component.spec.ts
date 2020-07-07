@@ -1,4 +1,7 @@
+import { UserInfo } from './../user-info.model';
+import { HttpClient } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -12,8 +15,12 @@ describe('LogoutComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([]),
+        HttpClientTestingModule
+        
       ],
       declarations: [ LogoutComponent ]
+      ,
+      providers:[UserInfo]
     })
     .compileComponents();
   }));
