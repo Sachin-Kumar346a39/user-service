@@ -5,14 +5,18 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.stubbing.OngoingStubbing;
+import org.springframework.data.domain.Example;
 
 import com.cts.loan.exception.NoResourceException;
 import com.cts.loan.model.Loan;
@@ -25,6 +29,11 @@ class LoanServiceTest {
 
 	private Loan expectedLoan;
 	private Loan updatedLoan;
+	
+	private Loan expectedSearchLoanFields;
+	private Loan searchedLoanFields;
+	
+	private List <Loan> expectedLoanList;
 
 	@InjectMocks
 	private LoanService loanService;
@@ -60,6 +69,8 @@ class LoanServiceTest {
 		updatedLoan.setLienType("SALE");
 		updatedLoan.setLienID("001");
 		updatedLoan.setLegalDescription("LIEN");
+		
+		//expectedLoanList.set(0, expectedLoan);
 
 	}
 
@@ -87,4 +98,28 @@ class LoanServiceTest {
 				.isInstanceOf(NoResourceException.class)
 				.hasMessage("Loan Not found with loanId: " + updatedLoan.getLoanId()).hasNoCause();
 	}
+	
+/*@Test
+@ExtendWith
+	void testSearchLoan_Success() {
+	Loan lLoan=null;
+		expectedSearchLoanFields = new Loan();
+		expectedSearchLoanFields.setBorrowerName("John");
+		expectedSearchLoanFields.setLoanNumber("1234A");
+		expectedSearchLoanFields.setLoanAmount(1234567.0);
+		
+		searchedLoanFields = new Loan();
+		searchedLoanFields.setBorrowerName("John");
+		searchedLoanFields.setLoanNumber("1234A");
+		searchedLoanFields.setLoanAmount(1234567.0);
+		
+		List<Loan> searchedLoanInfo =loanRepository.findAll(Example.of(searchedLoanFields));
+		if(searchedLoanInfo.size()==1) {
+			
+			lLoan=searchedLoanInfo.get(0);
+		}
+		Example<Loan> exLoan=Example.of(searchedLoanFields);
+		when(loanRepository.findAll(((OngoingStubbing<Loan>) Example.of((Loan) any())).thenReturn((Loan) expectedLoanList);
+		Assertions.assertEquals(expectedSearchLoanFields, loanService.searchLoanInfo(SearchedLoanFields));
+	}*/
 }
