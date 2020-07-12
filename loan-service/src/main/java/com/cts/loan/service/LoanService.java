@@ -1,8 +1,10 @@
 package com.cts.loan.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.cts.loan.exception.NoResourceException;
@@ -41,6 +43,28 @@ public class LoanService {
 	private Optional<Loan> getLoanByLoanId(int loanId) {
 		return repository.findById(loanId);
 
+	}
+	
+	
+	public Loan searchLoanInfo(Loan loan){
+		Loan lLoan=null;
+		Loan searchLoan=new Loan();
+		
+		if(loan.getBorrowerName()!=null && ! loan.getBorrowerName().isEmpty()) { 
+			searchLoan.setBorrowerName(loan.getBorrowerName());
+		}
+		if(loan.getLoanNumber()!=null && ! loan.getLoanNumber().isEmpty() ) {
+		searchLoan.setLoanNumber(loan.getLoanNumber());
+		}
+		if(loan.getLoanAmount() > 0 ) {
+		searchLoan.setLoanAmount(loan.getLoanAmount());
+		}
+		List<Loan> searchedLoanInfo =repository.findAll(Example.of(searchLoan));
+		if(searchedLoanInfo.size()==1) {
+			lLoan=searchedLoanInfo.get(0);
+		}
+		return lLoan;
+		
 	}
 
 }
