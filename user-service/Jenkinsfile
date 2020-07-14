@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-		stage('Clean workspace') {
+		/*stage('Clean workspace') {
             steps {
 			    deleteDir()
                 sh 'ls -lah'
             }
-        }
+        }*/
 		stage('Checkout code') {
             steps {
 			    checkout scm
