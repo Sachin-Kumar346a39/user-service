@@ -1,0 +1,6 @@
+node ('master') {
+	stage 'Build & Test'
+	checkout scm
+	gradle clean build
+
+}
