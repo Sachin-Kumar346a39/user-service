@@ -1,5 +1,7 @@
+import { ViewLoanService } from './../services/view-loan.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { LoanInfo } from '../loan-info.model';
 
 @Component({
   selector: 'app-view-loan',
@@ -8,77 +10,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewLoanComponent implements OnInit {
 
-     borrowerFullName=""
-     dbBorrowerFullName
-     loanNumber=""
-     dbLoanNumber
-     loanAmount=""
-     dbLoanAmount
-     flag=false
-     found=false
-     notfound=false
-     deleted=false
+  //loanInfo: LoanInfo[];
+  loanInfoInput: LoanInfo = new LoanInfo();
 
-     loanDetails: any[] = [
-      {
-        "borrowerFullName": "Ashwin Kamath",
-        "loanNumber": "123",
-      "loanAmount": "123"
-      },
-      {
-        "borrowerFullName": "Sachin Kumar",
-        "loanNumber": "456",
-      "loanAmount": "456"
-      },
-      {
-        "borrowerFullName": "Anjana Shenoy",
-        "loanNumber": "789",
-      "loanAmount": "789"
-      }
-    ];
-  constructor(private router:Router) { }
+
+  flag = false
+  found = false
+  notfound = false
+
+  constructor(private router: Router, private viewLoanService: ViewLoanService, private loanInfo: LoanInfo) { }
 
   ngOnInit(): void {
-    
-  }
 
-   searchLoan():void{
-
-    //logig to Search Loan
     this.clearForm();
-    if(this.borrowerFullName.toLowerCase().includes("ashwin")||this.loanNumber.includes("1234")||this.loanAmount.includes("678"))
-    {
-      this.flag=true
-      this.found=true
-      this.dbBorrowerFullName="Ashwin Kamath"
-      this.dbLoanNumber="12345"
-      this.dbLoanAmount="67890"
-      
-      this.notfound=false
-    }
-    else{
-      this.notfound=true
-    }
-
   }
 
 
-  deleteLoan(): void{
+  searchLoan(): void {
 
-//add logic to deleteLoan
-      this.flag=false
-      this.deleted=true
-      
+
+    this.viewLoanService.searchLoan(this.loanInfoInput).subscribe(
+      (data) => {
+        if (data == null) {
+          this.setNoDataFlag();
+        }
+        else {
+          this.loanInfo = data;
+          this.setDataFlag();
+        }
+
+      },
+      (error) => {
+        this.notfound = true
+      })
   }
 
-  clearForm(): void{
-    this.flag=false
-    this.deleted=false
-    this.notfound=false
+  clearForm(): void {
+    this.flag = false
+    this.notfound = false
   }
 
-  editLoan():void{
-this.router.navigate(['editloan'])
+  setNoDataFlag(): void {
+    this.flag = false
+    this.notfound = true
+  }
+
+  setDataFlag(): void {
+    this.flag = true
+    this.found = true
+    this.notfound = false
+  }
+
+  editLoan(): void {
+    this.router.navigate(['editloan'])
   }
 
 }
