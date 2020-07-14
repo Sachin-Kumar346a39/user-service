@@ -19,8 +19,13 @@ pipeline {
         }
         stage('Compile code') {
             steps {
-                sh 'gradle --version'
-				sh 'gradle build --stacktrace'
+				sh 'gradle build'
+            }
+        }
+		
+		stage('Run test') {
+            steps {
+				sh 'gradle test'
             }
         }
 
