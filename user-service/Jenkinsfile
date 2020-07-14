@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh gradle clean
+			    checkout scm
+                gradle clean
             }
         }
 
