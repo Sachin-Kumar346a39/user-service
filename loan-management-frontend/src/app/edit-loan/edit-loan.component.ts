@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanInfo } from '../loan-info.model';
 import { NotificationService } from '../services/notification.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EditLoanService } from '../services/edit-loan.service';
 
 @Component({
   selector: 'app-edit-loan',
@@ -9,24 +11,37 @@ import {Location} from '@angular/common';
   styleUrls: ['./edit-loan.component.css']
 })
 export class EditLoanComponent implements OnInit {
+  loanInfoModel: LoanInfo = new LoanInfo();
+  constructor(public activatedRoute: ActivatedRoute, private loanInfo: LoanInfo, private notifyService: NotificationService, private _location: Location, private editLoanService: EditLoanService, private router: Router) { }
 
-  loanInfoModel: LoanInfo=new LoanInfo();
-  updatedLoanInfo: LoanInfo;
-  constructor(private loanInfo: LoanInfo,  private notifyService : NotificationService, private _location: Location) { }
+  ngOnInit(): void {
+    this.activatedRoute
+      .queryParams
+      .subscribe(params => {
+        
+        this.loanInfoModel = JSON.parse(params["loanInfo"]);
+      });
 
-  ngOnInit():void{}
+  }
 
   updateLoan() {
-    if(confirm("Are you sure to Update Loan? ")) {
-    //message needs to be updated
-      this.notifyService.showSuccess("Loan Updated Successfully for Loan#: "+this.loanInfoModel.loanNumber,"");
-      this.updatedLoanInfo=this.loanInfoModel;
-      this.loanInfoModel = new LoanInfo();
+    if (confirm("Are you sure to Update Loan? ")) {
+
+      this.editLoanService.editLoan(this.loanInfoModel).subscribe(
+        (data) => {
+
+          this.notifyService.showSuccess("Loan Updated Successfully for Loan#: " + this.loanInfoModel.loanNumber, "");
+          this.loanInfoModel = new LoanInfo();
+        },
+        (error) => {
+          this.notifyService.showError("Loan Info could not be updated for Loan#: " + this.loanInfoModel.loanNumber, "");
+
+        })
     }
   }
 
   doCancel() {
-    this._location.back();
+    this.router.navigate(['viewloan'])
   }
 }
 

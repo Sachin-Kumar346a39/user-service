@@ -27,6 +27,7 @@ public class LoanService {
 				.orElseThrow(() -> new NoResourceException("Loan", "loanId", String.valueOf(loanId)));
 		loanToUpdate.setAddressLine1(loan.getAddressLine1());
 		loanToUpdate.setAddressLine2(loan.getAddressLine2());
+		loanToUpdate.setLoanNumber(loan.getLoanNumber());
 		loanToUpdate.setBorrowerName(loan.getBorrowerName());
 		loanToUpdate.setCity(loan.getCity());
 		loanToUpdate.setState(loan.getState());
