@@ -2,10 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Compile') {
+		stage('Clean workspace') {
+            steps {
+			    deleteDir()
+                sh 'ls -lah'
+            }
+        }
+		stage('Checkout code') {
             steps {
 			    checkout scm
-                gradle clean
+            }
+        }
+        stage('Compile code') {
+            steps {
+                sh 'gradle clean'
             }
         }
 
