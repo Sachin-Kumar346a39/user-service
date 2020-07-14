@@ -36,6 +36,7 @@ pipeline {
 		
 
     }
+
 	
 	def login(url, org, space){
 
@@ -45,8 +46,6 @@ pipeline {
 						returnStatus: true
 					).trim()
 		}
-
-	}
 		
 	/*post {
 			wrap([$class: 'CloudFoundryCliBuildWrapper',
