@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { LoanInfo } from '../loan-info.model';
 
+
 @Component({
   selector: 'app-view-loan',
   templateUrl: './view-loan.component.html',
@@ -10,10 +11,7 @@ import { LoanInfo } from '../loan-info.model';
 })
 export class ViewLoanComponent implements OnInit {
 
-  //loanInfo: LoanInfo[];
   loanInfoInput: LoanInfo = new LoanInfo();
-
-
   flag = false
   found = false
   notfound = false
@@ -62,7 +60,8 @@ export class ViewLoanComponent implements OnInit {
   }
 
   editLoan(): void {
-    this.router.navigate(['editloan'])
+
+    this.router.navigate(['/editloan'], { queryParams: { loanInfo: JSON.stringify(this.loanInfo) } });
   }
 
 }
