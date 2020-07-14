@@ -20,7 +20,7 @@ pipeline {
         stage('Compile code') {
             steps {
                 sh 'gradle --version'
-				sh 'gradle clean'
+				sh 'gradle clean --stacktrace'
             }
         }
 
