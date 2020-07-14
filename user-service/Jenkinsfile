@@ -1,0 +1,33 @@
+plugin {
+    id "base"
+}
+
+pipeline {
+    agent any
+
+    stages {
+		/*stage('Clean workspace') {
+            steps {
+			    deleteDir()
+                sh 'ls -lah'
+            }
+        }*/
+		stage('Checkout code') {
+            steps {
+			    checkout scm
+            }
+        }
+        stage('Compile code') {
+            steps {
+				sh 'gradle build'
+            }
+        }
+		
+		stage('Run test') {
+            steps {
+				sh 'gradle test'
+            }
+        }
+
+    }
+}
