@@ -1,5 +1,5 @@
-plugin {
-    id "java"
+plugins {
+    id "base"
 }
 
 pipeline {
