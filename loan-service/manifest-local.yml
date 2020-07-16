@@ -1,0 +1,10 @@
+---
+applications:
+- name: loan-service-pod2-ak
+  memory: 2G
+  instances: 1
+  path: ./build/libs/loan-service-0.0.1-SNAPSHOT.jar
+  timeout: 120
+  services: 
+  - lms-db
+  buildpack: java_buildpack
