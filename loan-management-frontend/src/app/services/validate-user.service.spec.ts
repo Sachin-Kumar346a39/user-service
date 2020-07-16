@@ -4,10 +4,12 @@ import { TestBed, async, inject } from '@angular/core/testing';
 
 import { ValidateUserService } from './validate-user.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { environment } from '../../environments/environment';
 
 describe('ValidateUserService', () => {
   let service: ValidateUserService;
   let httpMock: HttpTestingController;
+  let lms_user_base_url = environment.lms_user_base_url;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,7 +31,7 @@ describe('ValidateUserService', () => {
   it(`should return posts as an Observable`, async(inject([HttpTestingController, ValidateUserService],
     () => {
 
-      let POST_URL = 'http://localhost:9090/api/v1/user/validateUser'
+      let POST_URL = lms_user_base_url+'/api/v1/user/validateUser'
       const postUser = [
         {
           "username": "user@sw.com",
