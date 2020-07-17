@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  lms_loan_base_url: 'http://localhost:9092',
+  lms_user_base_url: 'http://localhost:9090'
 };
 
 /*

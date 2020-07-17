@@ -2,10 +2,13 @@ import { LoanInfo } from './../loan-info.model';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { ViewLoanService } from './view-loan.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { environment } from '../../environments/environment';
 
 describe('ViewLoanService', () => {
   let service: ViewLoanService;
   let httpMock: HttpTestingController;
+
+  let lms_loan_base_url = environment.lms_loan_base_url;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -25,7 +28,7 @@ describe('ViewLoanService', () => {
   it(`should return posts as an Observable`, async(inject([HttpTestingController, ViewLoanService],
     () => {
 
-      let POST_URL = 'http://localhost:9092/api/v1/loan/searchLoan'
+      let POST_URL = lms_loan_base_url+'/api/v1/loan/searchLoan'
       const loanData = [
         {
           "loanId": 11,
