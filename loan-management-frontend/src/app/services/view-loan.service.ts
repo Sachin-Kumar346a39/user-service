@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { LoanInfo } from './../loan-info.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViewLoanService {
-  SEARCH_LOAN_URL: string = 'http://localhost:9092/api/v1/loan/searchLoan';
+  lms_loan_base_url = environment.lms_loan_base_url;
+  SEARCH_LOAN_URL: string = this.lms_loan_base_url+'/api/v1/loan/searchLoan';
   constructor(private httpClient: HttpClient, loanInfo: LoanInfo) { }
 
   searchLoan(data: any): Observable<any> {
