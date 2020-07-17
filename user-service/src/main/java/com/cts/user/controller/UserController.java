@@ -1,5 +1,6 @@
 package com.cts.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,11 @@ public class UserController {
 			status = HttpStatus.NOT_FOUND;
 		}
 		return new ResponseEntity<User>(userResult, status);
+	}
+	
+	@PostMapping("/logout")
+	public boolean destroySession(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return true;
 	}
 }
