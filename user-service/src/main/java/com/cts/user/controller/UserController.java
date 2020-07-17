@@ -30,12 +30,11 @@ public class UserController {
 	public ResponseEntity<User> validateUser(@Valid @RequestBody User user) {
 		HttpStatus status = HttpStatus.OK;
 		User userResult = null;
-
 		try {
 
 			userResult = userService.validateUser(user);
-		} catch (NoResourceException ex) {
 
+		} catch (NoResourceException ex) {
 			log.error("User Controller Exception: ", ex.getMessage());
 			status = HttpStatus.NOT_FOUND;
 		}
