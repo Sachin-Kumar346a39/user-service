@@ -7,4 +7,5 @@ applications:
   timeout: 120
   services: 
   - lms-db
+  - lms-new-relic
   buildpack: java_buildpack
