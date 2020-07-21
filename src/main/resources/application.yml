@@ -1,5 +1,14 @@
 spring:
   application:
     name: user-service
+    
+  session:
+    store-type: redis
+
   jpa:
-    show-sql: true
+    show-sql: true  
+  
+server:
+  servlet:
+    session:
+      timeout: 600

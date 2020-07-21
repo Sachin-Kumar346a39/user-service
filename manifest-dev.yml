@@ -9,6 +9,7 @@ applications:
   - lms-db
   - lms-new-relic
   - lms-autoscalar
+  - lms-redis
   buildpack: java_buildpack
   env:
     spring_profiles_active: dev
