@@ -1,6 +1,6 @@
 ---
 applications:
-- name: user-service-pod2-ak
+- name: user-service-pod2-jenkins
   memory: 2G
   instances: 1
   path: ./build/libs/user-service-0.0.1-SNAPSHOT.jar
@@ -10,3 +10,5 @@ applications:
   - lms-new-relic
   - lms-autoscalar
   buildpack: java_buildpack
+  env:
+    spring_profiles_active: dev
