@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,10 +42,18 @@ public class UserController {
 		}
 		return new ResponseEntity<User>(userResult, status);
 	}
-	
+
 	@PostMapping("/logout")
 	public boolean destroySession(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return true;
+	}
+
+	@Value("${message}")
+	private String message;
+
+	@RequestMapping("/message")
+	String getMessage() {
+		return this.message;
 	}
 }
