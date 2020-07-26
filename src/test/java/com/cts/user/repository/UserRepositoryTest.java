@@ -42,6 +42,7 @@ public class UserRepositoryTest {
 		expectedUser.setUsername("user@sw.com");
 		expectedUser.setPassword("pass");
 		expectedUser.setAdmin(false);
+		userRepository.save(expectedUser);
 
 	}
 
